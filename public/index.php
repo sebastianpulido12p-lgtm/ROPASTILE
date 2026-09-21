@@ -1,9 +1,12 @@
 <?php
 
-require_once "../config/Database.php";
+require_once __DIR__ . "/../app/controllers/ProductoController.php";
+require_once __DIR__ . "/../app/controllers/ClienteController.php";
 
-$database = new Database();
 
-$pdo = $database->conectar();
 
-echo "Conexión exitosa a la base de datos ROPASTILE";
+$controller = new ProductoController();
+$controller->index();
+
+$controller = new ClienteController();
+$controller->index();
