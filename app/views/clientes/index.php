@@ -8,7 +8,7 @@
         <th>Documento</th>
         <th>Teléfono</th>
         <th>Correo</th>
-        <th>ID Ciudad</th>
+        <th>Ciudad</th>
     </tr>
 
     <?php foreach ($clientes as $clienteItem): ?>
@@ -19,7 +19,13 @@
             <td><?= $clienteItem['documento'] ?></td>
             <td><?= $clienteItem['telefono'] ?></td>
             <td><?= $clienteItem['correo'] ?></td>
-            <td><?= $clienteItem['idCiudad'] ?></td>
+            <td>
+                <?php if ($clienteItem['ciudad_nombre']): ?>
+                    <?= $clienteItem['ciudad_nombre'] ?>
+                <?php else: ?>
+                    Sin ciudad
+                <?php endif; ?>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
@@ -36,7 +42,7 @@
         <th>Documento</th>
         <th>Teléfono</th>
         <th>Correo</th>
-        <th>ID Ciudad</th>
+        <th>Ciudad</th>
     </tr>
 
     <tr>
@@ -46,9 +52,17 @@
         <td><?= $cliente['documento'] ?></td>
         <td><?= $cliente['telefono'] ?></td>
         <td><?= $cliente['correo'] ?></td>
-        <td><?= $cliente['idCiudad'] ?></td>
+        <td>
+            <?php if ($cliente['ciudad_nombre']): ?>
+                <?= $cliente['ciudad_nombre'] ?>
+            <?php else: ?>
+                Sin ciudad
+            <?php endif; ?>
+        </td>
     </tr>
 </table>
+
+<hr style="border: 2px solid black;">
 
 <?php else: ?>
 

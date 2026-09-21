@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../../config/Database.php";
 
-class TipoProducto
+class DescripCompra
 {
     private $connection;
 
@@ -20,17 +20,19 @@ class TipoProducto
     {
         try {
             $sql = "SELECT
-                        idTipoProducto,
-                        nombre,
-                        descripcion
-                    FROM tipoproducto";
+                        idDescripCompra,
+                        idCompra,
+                        idProducto,
+                        cantidad,
+                        precioUnitario
+                    FROM descripcompra";
 
             $consulta = $this->connection->query($sql);
 
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            echo "Error al obtener los tipos de producto: " . $e->getMessage();
+            echo "Error al obtener los detalles de compra: " . $e->getMessage();
             return [];
         }
     }
@@ -39,19 +41,22 @@ class TipoProducto
     {
         try {
             $sql = "SELECT
-                        idTipoProducto,
-                        nombre,
-                        descripcion
-                    FROM tipoproducto
-                    WHERE idTipoProducto = :id";
+                        idDescripCompra,
+                        idCompra,
+                        idProducto,
+                        cantidad,
+                        precioUnitario
+                    FROM descripcompra
+                    WHERE idDescripCompra = :id";
 
             $stmt = $this->connection->prepare($sql);
+
             $stmt->execute([':id' => $id]);
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            echo "Error al obtener el tipo de producto: " . $e->getMessage();
+            echo "Error al obtener el detalle de compra: " . $e->getMessage();
             return false;
         }
     }

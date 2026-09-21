@@ -17,50 +17,54 @@ class Cliente
     }
 
     public function getAll()
-    {
-        try {
-            $sql = "SELECT
-                        idCliente,
-                        nombre,
-                        apellido,
-                        documento,
-                        telefono,
-                        correo,
-                        idCiudad
-                    FROM cliente";
+{
+    try {
+        $sql = "SELECT
+                    cliente.idCliente,
+                    cliente.nombre,
+                    cliente.apellido,
+                    cliente.documento,
+                    cliente.telefono,
+                    cliente.correo,
+                    ciudad.nombre AS ciudad_nombre
+                FROM cliente
+                LEFT JOIN ciudad
+                ON cliente.idCiudad = ciudad.idCiudad";
 
-            $consulta = $this->connection->query($sql);
+        $consulta = $this->connection->query($sql);
 
-            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
 
-        } catch (PDOException $e) {
-            echo "Error al obtener los clientes: " . $e->getMessage();
-            return [];
-        }
+    } catch (PDOException $e) {
+        echo "Error al obtener los clientes: " . $e->getMessage();
+        return [];
     }
+}
 
-    public function getById($id)
-    {
-        try {
-            $sql = "SELECT
-                        idCliente,
-                        nombre,
-                        apellido,
-                        documento,
-                        telefono,
-                        correo,
-                        idCiudad
-                    FROM cliente
-                    WHERE idCliente = :id";
+public function getById($id)
+{
+    try {
+        $sql = "SELECT
+                    cliente.idCliente,
+                    cliente.nombre,
+                    cliente.apellido,
+                    cliente.documento,
+                    cliente.telefono,
+                    cliente.correo,
+                    ciudad.nombre AS ciudad_nombre
+                FROM cliente
+                LEFT JOIN ciudad
+                ON cliente.idCiudad = ciudad.idCiudad
+                WHERE cliente.idCliente = :id";
 
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute([':id' => $id]);
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([':id' => $id]);
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
 
-        } catch (PDOException $e) {
-            echo "Error al obtener el cliente: " . $e->getMessage();
-            return false;
-        }
+    } catch (PDOException $e) {
+        echo "Error al obtener el cliente: " . $e->getMessage();
+        return false;
     }
+}
 }

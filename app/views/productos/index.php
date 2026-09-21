@@ -25,6 +25,7 @@
         </tr>
     <?php endforeach; ?>
 </table>
+ 
 
 <h1>Detalle del producto</h1>
 
@@ -53,6 +54,8 @@
         <td><?= $producto['estado'] ?></td>
     </tr>
 </table>
+
+<hr style="border: 2px solid black;">
 
 <?php else: ?>
 
