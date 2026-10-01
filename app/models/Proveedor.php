@@ -65,4 +65,28 @@ public function getById($id)
         return false;
     }
 }
+
+public function guardar($nombre, $documento, $telefono, $correo, $ciudad)
+{
+    try {
+        $sql = "INSERT INTO proveedor (nombre, documento, telefono, correo, idCiudad) 
+                SELECT :nombre, :documento, :telefono, :correo, idCiudad
+                FROM ciudad 
+                WHERE nombre = :ciudad";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':documento', $documento);
+        $consulta->bindParam(':telefono', $telefono);
+        $consulta->bindParam(':correo', $correo);
+        $consulta->bindParam(':ciudad', $ciudad);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al guardar el proveedor: " . $e->getMessage();
+        return false;
+    }
+}
 }

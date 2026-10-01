@@ -14,6 +14,26 @@ class ProveedorController
 
         require_once __DIR__ . "/../views/proveedores/index.php";
     }
+
+    public function guardar()
+    {
+    $nombre = $_POST['nombre'];
+    $documento = $_POST['documento'];
+    $telefono = $_POST['telefono'];
+    $correo = $_POST['correo'];
+    $ciudad = $_POST['ciudad'];
+
+    $proveedorModel = new Proveedor();
+    $resultado = $proveedorModel->guardar($nombre, $documento, $telefono, $correo, $ciudad);
+
+    if ($resultado) {
+        echo "Proveedor guardado correctamente.";
+        $this->index();
+    } else {
+        echo "Error al guardar el proveedor.";
+    }
+    }
+
     
     public function crear()
     {

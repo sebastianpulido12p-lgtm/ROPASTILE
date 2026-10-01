@@ -15,6 +15,11 @@
 
     <br><br>
 
+    <label>Descripción:</label>
+    <input type="text" name="descripcion">
+
+    <br><br>
+
     <label>Marca:</label>
     <input type="text" name="marca" required>
 

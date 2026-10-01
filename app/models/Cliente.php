@@ -67,4 +67,29 @@ public function getById($id)
         return false;
     }
 }
+
+public function guardar($nombre, $apellido, $documento, $telefono, $correo, $ciudad)
+{
+    try {
+        $sql = "INSERT INTO cliente (nombre, apellido, documento, telefono, correo, idCiudad)
+                SELECT :nombre, :apellido, :documento, :telefono, :correo, idCiudad
+                FROM ciudad
+                WHERE nombre = :ciudad";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':apellido', $apellido);
+        $consulta->bindParam(':documento', $documento);
+        $consulta->bindParam(':telefono', $telefono);
+        $consulta->bindParam(':correo', $correo);
+        $consulta->bindParam(':ciudad', $ciudad);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al guardar el cliente: " . $e->getMessage();
+        return false;
+    }
+}
 }

@@ -60,4 +60,25 @@ class Compra
             return false;
         }
     }
+
+public function guardar($fecha, $proveedor)
+{
+    try {
+        $sql = "INSERT INTO compra (fecha, idProveedor)
+                SELECT :fecha, idProveedor
+                FROM proveedor
+                WHERE nombre = :proveedor";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':fecha', $fecha);
+        $consulta->bindParam(':proveedor', $proveedor);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al guardar la compra: " . $e->getMessage();
+        return false;
+    }
+}
 }

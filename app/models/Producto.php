@@ -76,4 +76,31 @@ class Producto
             return false;
         }
     }
+
+public function guardar($nombre, $descripcion, $marca, $tipoProducto, $estado, $precio, $stock)
+{
+    try {
+        $sql = "INSERT INTO producto (nombre, descripcion, idMarca, idTipoProducto, estado, precio, stock) 
+                SELECT :nombre, :descripcion, marca.idMarca, tipoproducto.idTipoProducto, :estado, :precio, :stock
+                FROM marca, tipoproducto
+                WHERE marca.nombre = :marca
+                AND tipoproducto.nombre = :tipoProducto";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':descripcion', $descripcion);
+        $consulta->bindParam(':marca', $marca);
+        $consulta->bindParam(':tipoProducto', $tipoProducto);
+        $consulta->bindParam(':estado', $estado);
+        $consulta->bindParam(':precio', $precio);
+        $consulta->bindParam(':stock', $stock);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al guardar el producto: " . $e->getMessage();
+        return false;
+    }
+}
 }

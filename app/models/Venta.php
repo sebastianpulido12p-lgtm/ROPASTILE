@@ -69,4 +69,27 @@ class Venta
             return false;
         }
     }
+
+ public function guardar($fecha, $cliente, $tipoPago)
+{
+    try {
+        $sql = "INSERT INTO venta (fecha, idCliente, idTipoPago)
+                SELECT :fecha, cliente.idCliente, tipopago.idTipoPago
+                FROM cliente, tipopago
+                WHERE CONCAT(cliente.nombre, ' ', cliente.apellido) = :cliente
+                AND tipopago.nombre = :tipoPago";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':fecha', $fecha);
+        $consulta->bindParam(':cliente', $cliente);
+        $consulta->bindParam(':tipoPago', $tipoPago);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al guardar la venta: " . $e->getMessage();
+        return false;
+    }
+}
 }

@@ -1,3 +1,4 @@
+```php
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,6 +13,16 @@
 
     <label>Fecha:</label>
     <input type="datetime-local" name="fecha" required>
+
+    <br><br>
+
+    <label>Cliente:</label>
+    <input type="text" name="cliente" required>
+
+    <br><br>
+
+    <label>Tipo de Pago:</label>
+    <input type="text" name="tipoPago" required>
 
     <br><br>
 

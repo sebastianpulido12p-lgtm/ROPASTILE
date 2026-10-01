@@ -15,6 +15,11 @@
 
     <br><br>
 
+    <label>Proveedor:</label>
+    <input type="text" name="proveedor" required>
+
+    <br><br>
+
     <button type="submit">Guardar Compra</button>
 
 </form>

@@ -15,7 +15,31 @@ class ProductoController
         require_once __DIR__ . "/../views/productos/index.php";
         
     }
-    
+
+
+  public function guardar()
+{
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $marca = $_POST['marca'];
+    $tipoProducto = $_POST['tipoProducto'];
+    $estado = $_POST['estado'];
+    $precio = $_POST['precio'];
+    $stock = $_POST['stock'];
+
+    $productoModel = new Producto();
+
+    $resultado = $productoModel->guardar($nombre, $descripcion, $marca, $tipoProducto, $estado, $precio, $stock);
+
+    if ($resultado) {
+        echo "Producto guardado correctamente.";
+        $this->index();
+    } else {
+        echo "Error al guardar el producto.";
+    }
+}
+
+   
     public function crear()
     {
         require_once __DIR__ . "/../views/productos/crear.php";
