@@ -14,4 +14,9 @@ class CompraController
 
         require_once __DIR__ . "/../views/compras/index.php";
     }
+    
+    public function crear()
+    {
+        require_once __DIR__ . "/../views/compras/crear.php";   
+    }
 }

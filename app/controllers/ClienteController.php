@@ -14,4 +14,9 @@ class ClienteController
 
         require_once __DIR__ . "/../views/clientes/index.php";
     }
+
+    public function crear()
+    {
+        require_once __DIR__ . "/../views/clientes/crear.php";
+    }
 }

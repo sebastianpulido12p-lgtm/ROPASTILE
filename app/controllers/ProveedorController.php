@@ -14,4 +14,9 @@ class ProveedorController
 
         require_once __DIR__ . "/../views/proveedores/index.php";
     }
+    
+    public function crear()
+    {
+        require_once __DIR__ . "/../views/proveedores/crear.php";
+    }
 }
