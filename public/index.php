@@ -9,7 +9,17 @@ require_once __DIR__ . "/../app/controllers/CompraController.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
+
+
+$ruta = parse_url($uri, PHP_URL_PATH);
+ 
+if($ruta === "/productos/editar" && $method === "GET") {
+    $productoController = new ProductoController();
+    $productoController->editar();
+}
+
 ?>
+
 
 <a href="/productos">Productos</a>
 
@@ -145,3 +155,8 @@ if ($method === 'POST' && $uri === "/ventas/crear") {
     $ventaController->guardar();
 }
 ?>
+
+
+
+
+

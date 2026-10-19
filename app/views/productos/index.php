@@ -10,6 +10,7 @@
         <th>Marca</th>
         <th>Tipo Producto</th>
         <th>Estado</th>
+        <th>Acciones</th>
     </tr>
 
     <?php foreach ($productos as $productoItem): ?>
@@ -22,6 +23,11 @@
             <td><?= $productoItem['marca_nombre'] ?></td>
             <td><?= $productoItem['tipo_nombre'] ?></td>
             <td><?= $productoItem['estado'] ?></td>
+            <td>
+            <a href="/productos/editar?id=<?= $producto['idProducto'] ?>">
+        Editar
+    </a>
+</td>
         </tr>
     <?php endforeach; ?>
 </table>
