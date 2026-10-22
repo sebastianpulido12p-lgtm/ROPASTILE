@@ -44,16 +44,17 @@ public function getById($id)
 {
     try {
         $sql = "SELECT
-                    proveedor.idProveedor,
-                    proveedor.nombre,
-                    proveedor.documento,
-                    proveedor.telefono,
-                    proveedor.correo,
-                    ciudad.nombre AS ciudad_nombre
-                FROM proveedor
-                LEFT JOIN ciudad
-                ON proveedor.idCiudad = ciudad.idCiudad
-                WHERE proveedor.idProveedor = :id";
+            proveedor.idProveedor,
+            proveedor.nombre,
+            proveedor.documento,
+            proveedor.telefono,
+            proveedor.correo,
+            proveedor.idCiudad,
+            ciudad.nombre AS ciudad_nombre
+        FROM proveedor
+        LEFT JOIN ciudad
+        ON proveedor.idCiudad = ciudad.idCiudad
+        WHERE proveedor.idProveedor = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([':id' => $id]);

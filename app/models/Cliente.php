@@ -44,18 +44,19 @@ class Cliente
 public function getById($id)
 {
     try {
-        $sql = "SELECT
-                    cliente.idCliente,
-                    cliente.nombre,
-                    cliente.apellido,
-                    cliente.documento,
-                    cliente.telefono,
-                    cliente.correo,
-                    ciudad.nombre AS ciudad_nombre
-                FROM cliente
-                LEFT JOIN ciudad
-                ON cliente.idCiudad = ciudad.idCiudad
-                WHERE cliente.idCliente = :id";
+     $sql = "SELECT
+            cliente.idCliente,
+            cliente.nombre,
+            cliente.apellido,
+            cliente.documento,
+            cliente.telefono,
+            cliente.correo,
+            cliente.idCiudad,
+            ciudad.nombre AS ciudad_nombre
+        FROM cliente
+        LEFT JOIN ciudad
+        ON cliente.idCiudad = ciudad.idCiudad
+        WHERE cliente.idCliente = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([':id' => $id]);

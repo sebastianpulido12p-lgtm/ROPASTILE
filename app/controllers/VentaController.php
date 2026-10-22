@@ -31,9 +31,22 @@ class VentaController
             echo "Error al guardar la venta.";
         }
     }
+    
 
     public function crear()
     {
         require_once __DIR__ . "/../views/ventas/crear.php";
+    }
+
+    public function editar()
+    {
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    $modeloVenta = new Venta();
+
+    $venta = $modeloVenta->getById($id);
+
+    require_once __DIR__ . "/../views/ventas/editar.php";
+   
     }
 }

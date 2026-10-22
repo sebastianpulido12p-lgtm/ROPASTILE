@@ -6,6 +6,7 @@
         <th>Fecha</th>
         <th>Cliente</th>
         <th>Tipo de Pago</th>
+        <th>Acciones</th>
     </tr>
 
     <?php foreach ($ventas as $ventaItem): ?>
@@ -14,6 +15,10 @@
             <td><?= $ventaItem['fecha'] ?></td>
             <td><?= $ventaItem['cliente_nombre'] ?> <?= $ventaItem['cliente_apellido'] ?></td>
             <td><?= $ventaItem['tipo_pago'] ?></td>
+            <td>
+                <a href="/ventas/editar?id=<?= $ventaItem['idVenta'] ?>">
+                    Editar
+                </a>
         </tr>
     <?php endforeach; ?>
 </table>

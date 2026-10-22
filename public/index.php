@@ -18,7 +18,39 @@ if($ruta === "/productos/editar" && $method === "GET") {
     $productoController->editar();
 }
 
+
+if ($ruta === "/clientes/editar" && $method === "GET") {
+    $clienteController = new ClienteController();
+    $clienteController->editar();
+}
+
+
+if ($ruta === "/proveedores/editar" && $method === "GET") {
+    $proveedorController = new ProveedorController();
+    $proveedorController->editar();
+}
+
+
+if ($ruta === "/ventas/editar" && $method === "GET") {
+    $ventaController = new VentaController();
+    $ventaController->editar();
+}
+
+if ($ruta === "/compras/editar" && $method === "GET") {
+    $compraController = new CompraController();
+    $compraController->editar();
+}
+
+
+
+
 ?>
+
+
+
+
+
+
 
 
 <a href="/productos">Productos</a>

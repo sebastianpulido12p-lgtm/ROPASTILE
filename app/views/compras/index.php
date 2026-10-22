@@ -5,6 +5,7 @@
         <th>ID Compra</th>
         <th>Fecha</th>
         <th>Proveedor</th>
+        <th>Acciones</th>
     </tr>
 
     <?php foreach ($compras as $compraItem): ?>
@@ -12,6 +13,10 @@
             <td><?= $compraItem['idCompra'] ?></td>
             <td><?= $compraItem['fecha'] ?></td>
             <td><?= $compraItem['proveedor_nombre'] ?></td>
+            <td>
+                <a href="/compras/editar?id=<?= $compraItem['idCompra'] ?>">
+                    Editar
+                </a>
         </tr>
     <?php endforeach; ?>
 </table>

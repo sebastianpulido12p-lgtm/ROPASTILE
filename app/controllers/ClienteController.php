@@ -39,4 +39,16 @@ public function guardar()
     {
         require_once __DIR__ . "/../views/clientes/crear.php";
     }
+
+
+public function editar()
+{
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    $modeloCliente = new Cliente();
+
+    $cliente = $modeloCliente->getById($id);
+
+    require_once __DIR__ . "/../views/clientes/editar.php";
+}
 }

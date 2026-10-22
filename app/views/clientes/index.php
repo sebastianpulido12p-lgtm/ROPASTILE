@@ -9,6 +9,7 @@
         <th>Teléfono</th>
         <th>Correo</th>
         <th>Ciudad</th>
+        <th>Acciones</th>
     </tr>
 
     <?php foreach ($clientes as $clienteItem): ?>
@@ -25,6 +26,11 @@
                 <?php else: ?>
                     Sin ciudad
                 <?php endif; ?>
+            </td>
+            <td>
+                <a href="/clientes/editar?id=<?= $clienteItem['idCliente'] ?>">
+                    Editar
+                </a>
             </td>
         </tr>
     <?php endforeach; ?>

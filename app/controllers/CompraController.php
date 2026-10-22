@@ -34,4 +34,16 @@ class CompraController
     {
         require_once __DIR__ . "/../views/compras/crear.php";
     }
+
+
+    public function editar()
+    {
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    $modeloCompra = new Compra();
+
+    $compra = $modeloCompra->getById($id);
+
+    require_once __DIR__ . "/../views/compras/editar.php";
+    }
 }
