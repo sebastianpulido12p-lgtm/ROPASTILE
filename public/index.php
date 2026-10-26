@@ -18,6 +18,22 @@ if($ruta === "/productos/editar" && $method === "GET") {
     $productoController->editar();
 }
 
+if ($ruta === "/productos/actualizar" && $method === "POST") {
+    $productoController = new ProductoController();
+    $productoController->actualizar();
+}
+
+if ($ruta === "/productos/eliminar" && $method === "GET") {
+    $productoController = new ProductoController();
+    $productoController->eliminar();
+}
+
+
+
+
+
+
+
 
 if ($ruta === "/clientes/editar" && $method === "GET") {
     $clienteController = new ClienteController();

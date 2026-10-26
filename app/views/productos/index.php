@@ -1,3 +1,4 @@
+
 <h1>Listado de Productos</h1>
 
 <table border="1">
@@ -24,47 +25,51 @@
             <td><?= $productoItem['tipo_nombre'] ?></td>
             <td><?= $productoItem['estado'] ?></td>
             <td>
-            <a href="/productos/editar?id=<?= $producto['idProducto'] ?>">
-        Editar
-    </a>
-</td>
+                <a href="/productos/editar?id=<?= $productoItem['idProducto'] ?>">
+                    Editar
+                </a>
+
+                <a href="/productos/eliminar?id=<?= $productoItem['idProducto'] ?>"
+   onclick="return confirm('¿Estás seguro de eliminar este producto?')">
+    Eliminar
+</a>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
- 
 
 <h1>Detalle del producto</h1>
 
 <?php if ($producto): ?>
 
-<table border="1">
-    <tr>
-        <th>ID Producto</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Marca</th>
-        <th>Tipo Producto</th>
-        <th>Estado</th>
-    </tr>
+    <table border="1">
+        <tr>
+            <th>ID Producto</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Marca</th>
+            <th>Tipo Producto</th>
+            <th>Estado</th>
+        </tr>
 
-    <tr>
-        <td><?= $producto['idProducto'] ?></td>
-        <td><?= $producto['nombre'] ?></td>
-        <td><?= $producto['descripcion'] ?></td>
-        <td><?= $producto['precio'] ?></td>
-        <td><?= $producto['stock'] ?></td>
-        <td><?= $producto['marca_nombre'] ?></td>
-        <td><?= $producto['tipo_nombre'] ?></td>
-        <td><?= $producto['estado'] ?></td>
-    </tr>
-</table>
+        <tr>
+            <td><?= $producto['idProducto'] ?></td>
+            <td><?= $producto['nombre'] ?></td>
+            <td><?= $producto['descripcion'] ?></td>
+            <td><?= $producto['precio'] ?></td>
+            <td><?= $producto['stock'] ?></td>
+            <td><?= $producto['marca_nombre'] ?></td>
+            <td><?= $producto['tipo_nombre'] ?></td>
+            <td><?= $producto['estado'] ?></td>
+        </tr>
+    </table>
 
-<hr style="border: 2px solid black;">
+    <hr style="border: 2px solid black;">
 
 <?php else: ?>
 
-<p>Producto no encontrado.</p>
+    <p>Producto no encontrado.</p>
 
 <?php endif; ?>

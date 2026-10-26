@@ -103,4 +103,55 @@ public function guardar($nombre, $descripcion, $marca, $tipoProducto, $estado, $
         return false;
     }
 }
+
+
+public function actualizar($id, $nombre, $descripcion, $precio, $stock, $marca, $tipoProducto, $estado)
+{
+    try {
+        $sql = "UPDATE producto
+                SET nombre = :nombre,
+                    descripcion = :descripcion,
+                    idMarca = :marca,
+                    idTipoProducto = :tipoProducto,
+                    estado = :estado,
+                    precio = :precio,
+                    stock = :stock
+                WHERE idProducto = :id";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':descripcion', $descripcion);
+        $consulta->bindParam(':precio', $precio);
+        $consulta->bindParam(':stock', $stock);
+        $consulta->bindParam(':marca', $marca);
+        $consulta->bindParam(':tipoProducto', $tipoProducto);
+        $consulta->bindParam(':estado', $estado);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al actualizar el producto: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+public function eliminar($id)
+{
+    try {
+        $sql = "DELETE FROM producto WHERE idProducto = :id";
+
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al eliminar el producto: " . $e->getMessage();
+        return false;
+    }
+}
+
 }

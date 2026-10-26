@@ -56,4 +56,59 @@ class ProductoController
     
 }
 
+
+public function actualizar()
+{
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $marca = $_POST['marca'];
+    $tipoProducto = $_POST['tipoProducto'];
+    $estado = $_POST['estado'];
+    $precio = $_POST['precio'];
+    $stock = $_POST['stock'];
+
+    $productoModel = new Producto();
+
+    $resultado = $productoModel->actualizar(
+        $id,
+        $nombre,
+        $descripcion,
+        $precio,
+        $stock,
+        $marca,
+        $tipoProducto,
+        $estado
+    );
+
+    if ($resultado) {
+        echo "Producto actualizado correctamente.";
+        $this->index();
+    } else {
+        echo "Error al actualizar el producto.";
+    }
+}
+
+
+public function eliminar()
+{
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    if ($id) {
+        $productoModel = new Producto();
+
+        $resultado = $productoModel->eliminar($id);
+
+        if ($resultado) {
+            echo "Producto eliminado correctamente.";
+        } else {
+            echo "Error al eliminar el producto.";
+        }
+    } else {
+        echo "ID de producto no válido.";
+    }
+
+    $this->index();
+}
+
 }
