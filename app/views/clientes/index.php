@@ -12,29 +12,36 @@
         <th>Acciones</th>
     </tr>
 
-    <?php foreach ($clientes as $clienteItem): ?>
-        <tr>
-            <td><?= $clienteItem['idCliente'] ?></td>
-            <td><?= $clienteItem['nombre'] ?></td>
-            <td><?= $clienteItem['apellido'] ?></td>
-            <td><?= $clienteItem['documento'] ?></td>
-            <td><?= $clienteItem['telefono'] ?></td>
-            <td><?= $clienteItem['correo'] ?></td>
-            <td>
-                <?php if ($clienteItem['ciudad_nombre']): ?>
-                    <?= $clienteItem['ciudad_nombre'] ?>
-                <?php else: ?>
-                    Sin ciudad
-                <?php endif; ?>
-            </td>
-            <td>
-                <a href="/clientes/editar?id=<?= $clienteItem['idCliente'] ?>">
-                    Editar
-                </a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
+    
+<?php foreach ($clientes as $clienteItem): ?>
+    <tr>
+        <td><?= $clienteItem['idCliente'] ?></td>
+        <td><?= $clienteItem['nombre'] ?></td>
+        <td><?= $clienteItem['apellido'] ?></td>
+        <td><?= $clienteItem['documento'] ?></td>
+        <td><?= $clienteItem['telefono'] ?></td>
+        <td><?= $clienteItem['correo'] ?></td>
+        <td>
+            <?php if ($clienteItem['ciudad_nombre']): ?>
+                <?= $clienteItem['ciudad_nombre'] ?>
+            <?php else: ?>
+                Sin ciudad
+            <?php endif; ?>
+        </td>
+        <td>
+            <a href="/clientes/editar?id=<?= $clienteItem['idCliente'] ?>">
+                Editar
+            </a>
+
+            <a href="/clientes/eliminar?id=<?= $clienteItem['idCliente'] ?>"
+               onclick="return confirm('¿Estás seguro de eliminar este cliente?')">
+                Eliminar
+            </a>
+        </td>
+    </tr>
+<?php endforeach; ?>
 </table>
+
 
 <h1>Detalle del cliente</h1>
 

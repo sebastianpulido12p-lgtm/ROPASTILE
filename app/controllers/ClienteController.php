@@ -51,4 +51,58 @@ public function editar()
 
     require_once __DIR__ . "/../views/clientes/editar.php";
 }
+
+
+public function actualizar()
+{
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $documento = $_POST['documento'];
+    $telefono = $_POST['telefono'];
+    $correo = $_POST['correo'];
+    $ciudad = $_POST['ciudad'];
+
+    $clienteModel = new Cliente();
+
+    $resultado = $clienteModel->actualizar(
+        $id,
+        $nombre,
+        $apellido,
+        $documento,
+        $telefono,
+        $correo,
+        $ciudad
+    );
+
+    if ($resultado) {
+        echo "Cliente actualizado correctamente.";
+        $this->index();
+    } else {
+        echo "Error al actualizar el cliente.";
+    }
+}
+
+
+public function eliminar()
+{
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    if ($id) {
+        $clienteModel = new Cliente();
+
+        $resultado = $clienteModel->eliminar($id);
+
+        if ($resultado) {
+            echo "Cliente eliminado correctamente.";
+        } else {
+            echo "Error al eliminar el cliente.";
+        }
+    } else {
+        echo "ID de cliente no válido.";
+    }
+
+    $this->index();
+}
+
 }

@@ -90,4 +90,52 @@ public function guardar($nombre, $documento, $telefono, $correo, $ciudad)
         return false;
     }
 }
+
+
+
+public function actualizar($id, $nombre, $documento, $telefono, $correo, $ciudad)
+{
+    try {
+        $sql = "UPDATE proveedor
+                SET nombre = :nombre,
+                    documento = :documento,
+                    telefono = :telefono,
+                    correo = :correo,
+                    idCiudad = :ciudad
+                WHERE idProveedor = :id";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':documento', $documento);
+        $consulta->bindParam(':telefono', $telefono);
+        $consulta->bindParam(':correo', $correo);
+        $consulta->bindParam(':ciudad', $ciudad);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al actualizar el proveedor: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+public function eliminar($id)
+{
+    try {
+        $sql = "DELETE FROM proveedor WHERE idProveedor = :id";
+
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al eliminar el proveedor: " . $e->getMessage();
+        return false;
+    }
+}
+
 }

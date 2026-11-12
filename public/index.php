@@ -10,64 +10,84 @@ require_once __DIR__ . "/../app/controllers/CompraController.php";
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-
 $ruta = parse_url($uri, PHP_URL_PATH);
- 
-if($ruta === "/productos/editar" && $method === "GET") {
+
+
+// PRODUCTOS
+if ($ruta === "/productos/editar" && $method === "GET") {
     $productoController = new ProductoController();
     $productoController->editar();
 }
-
 if ($ruta === "/productos/actualizar" && $method === "POST") {
     $productoController = new ProductoController();
     $productoController->actualizar();
 }
-
 if ($ruta === "/productos/eliminar" && $method === "GET") {
     $productoController = new ProductoController();
     $productoController->eliminar();
 }
 
 
-
-
-
-
-
-
+// CLIENTES
 if ($ruta === "/clientes/editar" && $method === "GET") {
     $clienteController = new ClienteController();
     $clienteController->editar();
 }
+if ($ruta === "/clientes/actualizar" && $method === "POST") {
+    $clienteController = new ClienteController();
+    $clienteController->actualizar();
+}
+if ($ruta === "/clientes/eliminar" && $method === "GET") {
+    $clienteController = new ClienteController();
+    $clienteController->eliminar();
+}
 
 
+
+
+// PROVEEDORES
 if ($ruta === "/proveedores/editar" && $method === "GET") {
     $proveedorController = new ProveedorController();
     $proveedorController->editar();
 }
+if ($ruta === "/proveedores/actualizar" && $method === "POST") {
+    $proveedorController = new ProveedorController();
+    $proveedorController->actualizar();
+}
+if ($ruta === "/proveedores/eliminar" && $method === "GET") {
+    $proveedorController = new ProveedorController();
+    $proveedorController->eliminar();
+}
 
 
+
+
+// VENTAS
 if ($ruta === "/ventas/editar" && $method === "GET") {
     $ventaController = new VentaController();
     $ventaController->editar();
 }
+if ($ruta === "/ventas/actualizar" && $method === "POST") {
+    $ventaController = new VentaController();
+    $ventaController->actualizar();
+}
+if ($ruta === "/ventas/eliminar" && $method === "POST") {
+    $ventaController = new VentaController();
+    $ventaController->eliminar();
+}
+
+
+
+
+
+// COMPRAS
 
 if ($ruta === "/compras/editar" && $method === "GET") {
     $compraController = new CompraController();
     $compraController->editar();
 }
 
-
-
-
 ?>
-
-
-
-
-
-
-
 
 <a href="/productos">Productos</a>
 
@@ -122,9 +142,14 @@ if ($method === 'GET' && $uri === "/compras") {
 }
 ?>
 
-/
 
-//CREACION//
+
+
+
+
+/////
+
+<!-- CREACION -->
 
 <a href="/clientes/crear">Crear Cliente</a>
 
@@ -167,7 +192,6 @@ if ($method === 'GET' && $uri === "/productos/crear") {
 }
 
 if ($method === 'POST' && $uri === "/productos/crear") {
-    $productoController = new ProductoController();
     $productoController->guardar();
 }
 ?>

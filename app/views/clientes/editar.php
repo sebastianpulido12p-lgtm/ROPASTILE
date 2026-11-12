@@ -1,3 +1,4 @@
+
 <h1>Editar Cliente</h1>
 
 <form action="/clientes/actualizar" method="POST">
@@ -25,7 +26,13 @@
     <br><br>
 
     <label>Ciudad:</label>
-    <input type="text" name="ciudad" value="<?= $cliente['idCiudad'] ?>" required>
+    <select name="ciudad" required>
+        <option value="2" <?= $cliente['idCiudad'] == 2 ? 'selected' : '' ?>>Bogota</option>
+        <option value="1" <?= $cliente['idCiudad'] == 1 ? 'selected' : '' ?>>La Dorada</option>
+        <option value="4" <?= $cliente['idCiudad'] == 4 ? 'selected' : '' ?>>Manizales</option>
+        <option value="3" <?= $cliente['idCiudad'] == 3 ? 'selected' : '' ?>>Medellin</option>
+    </select>
+
     <br><br>
 
     <button type="submit">Actualizar Cliente</button>

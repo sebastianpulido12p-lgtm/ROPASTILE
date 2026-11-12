@@ -1,3 +1,4 @@
+
 <h1>Listado de Ventas</h1>
 
 <table border="1">
@@ -19,6 +20,12 @@
                 <a href="/ventas/editar?id=<?= $ventaItem['idVenta'] ?>">
                     Editar
                 </a>
+
+                <form action="/ventas/eliminar" method="POST">
+                    <input type="hidden" name="id" value="<?= $ventaItem['idVenta'] ?>">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>

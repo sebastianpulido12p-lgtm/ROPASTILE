@@ -6,14 +6,17 @@
 
     <label>Fecha:</label>
     <input type="date" name="fecha" value="<?= $venta['fecha'] ?>" required>
+
     <br><br>
 
-    <label>Cliente:</label>
-    <input type="text" name="cliente" value="<?= $venta['idCliente'] ?>" required>
+    <label>ID Cliente:</label>
+    <input type="number" name="cliente" value="<?= $venta['idCliente'] ?>" required>
+
     <br><br>
 
-    <label>Tipo de Pago:</label>
-    <input type="text" name="tipoPago" value="<?= $venta['idTipoPago'] ?>" required>
+    <label>ID Tipo de Pago:</label>
+    <input type="number" name="tipoPago" value="<?= $venta['idTipoPago'] ?>" required>
+
     <br><br>
 
     <button type="submit">Actualizar Venta</button>

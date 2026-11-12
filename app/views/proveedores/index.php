@@ -1,3 +1,4 @@
+
 <h1>Listado de Proveedores</h1>
 
 <table border="1">
@@ -29,9 +30,16 @@
                 <a href="/proveedores/editar?id=<?= $proveedorItem['idProveedor'] ?>">
                     Editar
                 </a>
+
+                <a href="/proveedores/eliminar?id=<?= $proveedorItem['idProveedor'] ?>"
+                   onclick="return confirm('¿Estás seguro de eliminar este proveedor?')">
+                    Eliminar
+                </a>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
+
 
 <h1>Detalle del proveedor</h1>
 

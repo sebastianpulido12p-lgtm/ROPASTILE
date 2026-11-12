@@ -85,10 +85,56 @@ class Venta
         $consulta->bindParam(':cliente', $cliente);
         $consulta->bindParam(':tipoPago', $tipoPago);
 
-        return $consulta->execute();
+        $consulta->execute();
+
+        return $consulta->rowCount() > 0;
 
     } catch (PDOException $e) {
         echo "Error al guardar la venta: " . $e->getMessage();
+        return false;
+    }
+}
+
+    public function actualizar($id, $fecha, $cliente, $tipoPago)
+    {
+        try {
+            $sql = "UPDATE venta
+                    SET fecha = :fecha,
+                        idCliente = :cliente,
+                        idTipoPago = :tipoPago
+                    WHERE idVenta = :id";
+
+            $consulta = $this->connection->prepare($sql);
+
+            $consulta->bindParam(':id', $id);
+            $consulta->bindParam(':fecha', $fecha);
+            $consulta->bindParam(':cliente', $cliente);
+            $consulta->bindParam(':tipoPago', $tipoPago);
+
+            return $consulta->execute();
+
+        } catch (PDOException $e) {
+            echo "Error al actualizar la venta: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function eliminar($id)
+{
+    try {
+        $sql = "DELETE FROM descripventa WHERE idVenta = :id";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+        $consulta->execute();
+
+        $sql = "DELETE FROM venta WHERE idVenta = :id";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al eliminar la venta: " . $e->getMessage();
         return false;
     }
 }

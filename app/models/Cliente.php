@@ -86,11 +86,67 @@ public function guardar($nombre, $apellido, $documento, $telefono, $correo, $ciu
         $consulta->bindParam(':correo', $correo);
         $consulta->bindParam(':ciudad', $ciudad);
 
-        return $consulta->execute();
+        $consulta->execute();
+
+        if ($consulta->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     } catch (PDOException $e) {
         echo "Error al guardar el cliente: " . $e->getMessage();
         return false;
     }
 }
+
+
+
+public function actualizar($id, $nombre, $apellido, $documento, $telefono, $correo, $ciudad)
+{
+    try {
+        $sql = "UPDATE cliente
+                SET nombre = :nombre,
+                    apellido = :apellido,
+                    documento = :documento,
+                    telefono = :telefono,
+                    correo = :correo,
+                    idCiudad = :ciudad
+                WHERE idCliente = :id";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':nombre', $nombre);
+        $consulta->bindParam(':apellido', $apellido);
+        $consulta->bindParam(':documento', $documento);
+        $consulta->bindParam(':telefono', $telefono);
+        $consulta->bindParam(':correo', $correo);
+        $consulta->bindParam(':ciudad', $ciudad);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al actualizar el cliente: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+public function eliminar($id)
+{
+    try {
+        $sql = "DELETE FROM cliente WHERE idCliente = :id";
+
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al eliminar el cliente: " . $e->getMessage();
+        return false;
+    }
+}
+
 }

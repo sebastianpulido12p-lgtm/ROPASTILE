@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,7 +9,7 @@
 
 <h1>Crear Proveedor</h1>
 
-<form action="" method="POST">
+<form action="/proveedores/crear" method="POST">
 
     <label>Nombre:</label>
     <input type="text" name="nombre" required>
@@ -31,7 +32,13 @@
     <br><br>
 
     <label>Ciudad:</label>
-    <input type="text" name="ciudad" required>
+    <select name="ciudad" required>
+        <option value="">Seleccione una ciudad</option>
+        <option value="Bogota">Bogota</option>
+        <option value="La Dorada">La Dorada</option>
+        <option value="Manizales">Manizales</option>
+        <option value="Medellin">Medellin</option>
+    </select>
 
     <br><br>
 

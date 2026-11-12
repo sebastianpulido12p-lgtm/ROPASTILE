@@ -49,4 +49,45 @@ class VentaController
     require_once __DIR__ . "/../views/ventas/editar.php";
    
     }
+
+
+        public function actualizar()
+    {
+        $id = $_POST['id'];
+        $fecha = $_POST['fecha'];
+        $cliente = $_POST['cliente'];
+        $tipoPago = $_POST['tipoPago'];
+
+        $ventaModel = new Venta();
+
+        $resultado = $ventaModel->actualizar(
+            $id,
+            $fecha,
+            $cliente,
+            $tipoPago
+        );
+
+        if ($resultado) {
+            echo "Venta actualizada correctamente.";
+            $this->index();
+        } else {
+            echo "Error al actualizar la venta.";
+        }
+    }
+
+    public function eliminar()
+    {
+        $id = $_POST['id'];
+
+        $ventaModel = new Venta();
+
+        $resultado = $ventaModel->eliminar($id);
+
+        if ($resultado) {
+            echo "Venta eliminada correctamente.";
+            $this->index();
+        } else {
+            echo "Error al eliminar la venta.";
+        }
+    }
 }

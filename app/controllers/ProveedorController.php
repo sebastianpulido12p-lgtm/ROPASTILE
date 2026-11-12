@@ -51,4 +51,55 @@ class ProveedorController
 
     require_once __DIR__ . "/../views/proveedores/editar.php";
     }
+
+
+public function actualizar()
+{
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $documento = $_POST['documento'];
+    $telefono = $_POST['telefono'];
+    $correo = $_POST['correo'];
+    $ciudad = $_POST['ciudad'];
+
+    $proveedorModel = new Proveedor();
+
+    $resultado = $proveedorModel->actualizar(
+        $id,
+        $nombre,
+        $documento,
+        $telefono,
+        $correo,
+        $ciudad
+    );
+
+    if ($resultado) {
+        echo "Proveedor actualizado correctamente.";
+        $this->index();
+    } else {
+        echo "Error al actualizar el proveedor.";
+    }
+}
+
+public function eliminar()
+{
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    if ($id) {
+        $proveedorModel = new Proveedor();
+
+        $resultado = $proveedorModel->eliminar($id);
+
+        if ($resultado) {
+            echo "Proveedor eliminado correctamente.";
+        } else {
+            echo "Error al eliminar el proveedor.";
+        }
+    } else {
+        echo "ID de proveedor no válido.";
+    }
+
+    $this->index();
+}
+
 }
