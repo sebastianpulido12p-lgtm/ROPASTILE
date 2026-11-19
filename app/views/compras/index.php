@@ -1,3 +1,4 @@
+
 <h1>Listado de Compras</h1>
 
 <table border="1">
@@ -17,6 +18,12 @@
                 <a href="/compras/editar?id=<?= $compraItem['idCompra'] ?>">
                     Editar
                 </a>
+
+                <form action="/compras/eliminar" method="POST">
+                    <input type="hidden" name="id" value="<?= $compraItem['idCompra'] ?>">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>

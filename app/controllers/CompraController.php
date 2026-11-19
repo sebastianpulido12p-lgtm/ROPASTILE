@@ -46,4 +46,40 @@ class CompraController
 
     require_once __DIR__ . "/../views/compras/editar.php";
     }
+
+
+
+    public function actualizar()
+{
+    $id = $_POST['id'];
+    $fecha = $_POST['fecha'];
+    $proveedor = $_POST['proveedor'];
+
+    $compraModel = new Compra();
+
+    $resultado = $compraModel->actualizar($id, $fecha, $proveedor);
+
+    if ($resultado) {
+        echo "Compra actualizada correctamente.";
+        $this->index();
+    } else {
+        echo "Error al actualizar la compra.";
+    }
+}
+
+public function eliminar()
+{
+    $id = $_POST['id'];
+
+    $compraModel = new Compra();
+
+    $resultado = $compraModel->eliminar($id);
+
+    if ($resultado) {
+        echo "Compra eliminada correctamente.";
+        $this->index();
+    } else {
+        echo "Error al eliminar la compra.";
+    }
+}
 }

@@ -9,8 +9,49 @@ require_once __DIR__ . "/../app/controllers/CompraController.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
-
 $ruta = parse_url($uri, PHP_URL_PATH);
+
+switch ($ruta) {
+    case "/productos":
+        if ($method === "GET") {
+            $productoController = new ProductoController();
+            $productoController->index();
+        }
+    break;
+    case "/productos/crear":
+        if ($method === "GET") {
+            $productoController = new ProductoController();
+            $productoController->crear();
+        }
+
+        if ($method === "POST") {
+            $productoController = new ProductoController();
+            $productoController->guardar();
+        }
+    break;
+
+    case "/productos/editar":
+        if ($method === "GET") {
+            $productoController = new ProductoController();
+            $productoController->editar();
+        }
+    break;
+
+    case "/productos/actualizar":
+        if ($method === "POST") {
+            $productoController = new ProductoController();
+            $productoController->actualizar();
+        }
+    break;
+
+    case "/productos/eliminar":
+        if ($method === "GET") {
+            $productoController = new ProductoController();
+            $productoController->eliminar();
+        }
+    break;
+}
+
 
 
 // PRODUCTOS
@@ -81,11 +122,21 @@ if ($ruta === "/ventas/eliminar" && $method === "POST") {
 
 
 // COMPRAS
-
 if ($ruta === "/compras/editar" && $method === "GET") {
     $compraController = new CompraController();
     $compraController->editar();
 }
+if ($ruta === "/compras/actualizar" && $method === "POST") {
+    $compraController = new CompraController();
+    $compraController->actualizar();
+}
+if ($ruta === "/compras/eliminar" && $method === "POST") {
+    $compraController = new CompraController();
+    $compraController->eliminar();
+}
+
+
+
 
 ?>
 

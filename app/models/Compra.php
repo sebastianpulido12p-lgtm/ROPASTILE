@@ -81,4 +81,48 @@ public function guardar($fecha, $proveedor)
         return false;
     }
 }
+
+
+public function actualizar($id, $fecha, $proveedor)
+{
+    try {
+        $sql = "UPDATE compra
+                SET fecha = :fecha,
+                    idProveedor = :proveedor
+                WHERE idCompra = :id";
+
+        $consulta = $this->connection->prepare($sql);
+
+        $consulta->bindParam(':id', $id);
+        $consulta->bindParam(':fecha', $fecha);
+        $consulta->bindParam(':proveedor', $proveedor);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al actualizar la compra: " . $e->getMessage();
+        return false;
+    }
+}
+
+
+public function eliminar($id)
+{
+    try {
+        $sql = "DELETE FROM descripcompra WHERE idCompra = :id";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+        $consulta->execute();
+
+        $sql = "DELETE FROM compra WHERE idCompra = :id";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(':id', $id);
+
+        return $consulta->execute();
+
+    } catch (PDOException $e) {
+        echo "Error al eliminar la compra: " . $e->getMessage();
+        return false;
+    }
+}
 }
